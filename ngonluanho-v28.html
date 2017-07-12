@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Random Post</title>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<link href='https://fonts.googleapis.com/css?family=Roboto:100,200,300,400italic,400,500,500italic' rel='stylesheet' type='text/css'/>
+<style>
+body {
+  background-color:white;
+  margin:0;
+  padding:0;
+  color:#212121;
+}
+a {
+  color:#212121;
+  text-decoration:none;
+}
+a:hover {color:#0379C4}
+
+/* ==== Related Post Widget Start ==== */
+
+.related-post {
+  margin:22px auto 0;
+  font-family: Roboto, sans-serif;
+  font-size:16px;
+}
+.related-post h4 {
+  font-size:20px;
+  font-weight:400;
+  margin:0 0 0 15px
+}
+
+/* Style 2 */
+.related-post-style-2,
+.related-post-style-2 li {
+  margin:0;
+  padding:0;
+  list-style:none;
+  height:auto
+}
+.related-post-style-2 li {
+padding: 26px 22px; overflow: hidden; width: 33%; float: left; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+.related-post-style-2 li:first-child { }
+.related-post-style-2 .related-post-item-thumbnail {
+width: 100%; height: 165px; max-width: none; max-height: none; background-color: transparent; border: none; padding: 0; float: left; margin: 0 0 14px 0;
+}
+.related-post-style-2 .related-post-item-title {
+  font-weight:400;
+  font-size:20px;
+}
+.related-post-style-2 .related-post-item-summary {
+    display: block;
+    overflow: hidden;
+    margin-top: 6px;
+    color: #000;
+    font-weight: 300;
+    font-size: 19px;
+    line-height: 1.77em;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+	text-align: justify;
+}
+.related-post-style-2 .related-post-item-more {
+  display:none;
+}
+
+@media screen and (max-width:480px){
+.related-post-style-2 li {padding: 26px 0}
+.related-post-style-2 .related-post-item-thumbnail {
+  width:100%;
+  height:234px;
+  float: none;
+  margin: 0 0 14px 0;
+}
+
+.related-post-style-2 .related-post-item-title {
+    display: block;
+	margin: 0 22px;
+}
+.related-post-style-2 li {width: 100%}
+.related-post-style-2 .related-post-item-summary {margin: 10px 20px 0;
+font-size: 17px;
+  text-overflow: ellipsis;
+  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 11;
+  -webkit-box-orient: vertical;
+}
+
+}
+@media screen and (max-width:375px){
+.related-post-style-2 .related-post-item-thumbnail {
+  height:211px;}
+}
+@media screen and (max-width:360px){
+.related-post-style-2 .related-post-item-thumbnail {
+  height:203px;}
+}
+@media screen and (max-width:320px){
+.related-post-style-2 .related-post-item-thumbnail {
+  height:181px;}
+}
+
+}
+/* ==== Related Post Widget End ==== */
+</style>
+</head>
+<body>
+
+<div id="related-post" class="related-post"></div>
+<script>
+function getQueryVariable(variable) {
+  var query = window.location.search.substring(1);
+  var vars = query.split("&");
+  for (var i=0;i<vars.length;i++) {
+    var pair = vars[i].split("=");
+    if(pair[0] == variable){return pair[1];}
+  }
+  return(false);
+}
+var labelArray = [],
+    relatedPostConfig = {
+		homePage: getQueryVariable("url"),
+        numPosts: 3,
+        summaryLength: 262,
+        widgetStyle: 2,
+        callBack: function() {
+            var $container = $('#' + this.containerId + ' > ul'),
+                $list = $container.find('li'),
+                innerHeight = $list.first().height(),
+                outerHeight = $list.first().outerHeight(true);
+            // Container & list height setup
+            $container.css({
+                "height": outerHeight * $list.length / 2,
+                "overflow": "hidden"
+            });
+            $list.css({
+                "height": innerHeight,
+                "overflow": "hidden"
+            });
+            // Animation
+            function newsTicker() {
+                window.setTimeout(function() {
+                    $container.find('li:last').stop().animate({
+                        opacity: 0
+                    }, 1000, function() {
+                        $(this).hide().prependTo($container).slideDown(1000, function() {
+                            $(this).stop().animate({
+                                opacity: 1
+                            }, 1000, newsTicker);
+                        });
+                    });
+                }, 3000);
+            } newsTicker();
+        }
+    };
+</script>
+<script>
+/*! Related Post Widget for Blogger by Taufik Nurrohman => http://gplus.to/tovic */
+var randomRelatedIndex,showRelatedPost;(function(n,m,k){var d={widgetTitle:"<h4><a href='http://ngonluanho.net/' target='_blank' title='Bài thú vị khác'>BÀI THÚ VỊ KHÁC :</a></h4>",widgetStyle:1,homePage:"http://www.kompiajaib.com/",numPosts:7,summaryLength:370,titleLength:"auto",thumbnailSize:414,noImage:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAA3NCSVQICAjb4U/gAAAADElEQVQImWOor68HAAL+AX7vOF2TAAAAAElFTkSuQmCC",containerId:"related-post",newTabLink:false,moreText:"đọc thêm",callBack:function(){}};for(var f in relatedPostConfig){d[f]=(relatedPostConfig[f]=="undefined")?d[f]:relatedPostConfig[f]}var j=function(a){var b=m.createElement("script");b.type="text/javascript";b.src=a;k.appendChild(b)},o=function(b,a){return Math.floor(Math.random()*(a-b+1))+b},l=function(a){var p=a.length,c,b;if(p===0){return false}while(--p){c=Math.floor(Math.random()*(p+1));b=a[p];a[p]=a[c];a[c]=b}return a},e=(typeof labelArray=="object"&&labelArray.length>0)?"/-/"+l(labelArray)[0]:"",h=function(b){var c=b.feed.openSearch$totalResults.$t-d.numPosts,a=o(1,(c>0?c:1));j(d.homePage.replace(/\/$/,"")+"/feeds/posts/summary"+e+"?alt=json-in-script&orderby=updated&start-index="+a+"&max-results="+d.numPosts+"&callback=showRelatedPost")},g=function(z){var s=document.getElementById(d.containerId),x=l(z.feed.entry),A=d.widgetStyle,c=d.widgetTitle+'<ul class="related-post-style-'+A+'">',b=d.newTabLink?' target="_blank"':"",y='<span style="display:block;clear:both;"></span>',v,t,w,r,u;if(!s){return}for(var q=0;q<d.numPosts;q++){if(q==x.length){break}t=x[q].title.$t;w=(d.titleLength!=="auto"&&d.titleLength<t.length)?t.substring(0,d.titleLength)+"&hellip;":t;r=("media$thumbnail"in x[q]&&d.thumbnailSize!==false)?x[q].media$thumbnail.url.replace(/\/s[0-9]+(\-c)?/, "/s"+d.thumbnailSize):d.noImage;u=("summary"in x[q]&&d.summaryLength>0)?x[q].summary.$t.replace(/<br ?\/?>/g," ").replace(/<.*?>/g,"").replace(/[<>]/g,"").substring(0,d.summaryLength)+"&hellip;":"";for(var p=0,a=x[q].link.length;p<a;p++){v=(x[q].link[p].rel=="alternate")?x[q].link[p].href:"#"}if(A==2){c+='<li><a href="'+v+'" title="'+t+'"'+b+' target="_blank"><img alt="" class="related-post-item-thumbnail" src="'+r+'" width="'+d.thumbnailSize+'" height="'+d.thumbnailSize+'"></a><a class="related-post-item-title" title="'+t+'" href="'+v+'"'+b+" target='_blank'>"+w+'</a><span class="related-post-item-summary"><span class="related-post-item-summary-text">'+u+'</span> <a href="'+v+'" class="related-post-item-more"'+b+">"+d.moreText+"</a></span>"+y+"</li>"}else{if(A==3||A==4){c+='<li class="related-post-item" tabindex="0"><a class="related-post-item-title" href="'+v+'"'+b+' target="_blank"><img alt="" class="related-post-item-thumbnail" src="'+r+'" width="'+d.thumbnailSize+'" height="'+d.thumbnailSize+'"></a><div class="related-post-item-tooltip"><a class="related-post-item-title" title="'+t+'" href="'+v+'"'+b+" target='_blank'>"+w+"</a></div>"+y+"</li>"}else{if(A==5){c+='<li class="related-post-item" tabindex="0"><a class="related-post-item-wrapper" href="'+v+'" title="'+t+'"'+b+' target="_blank"><img alt="" class="related-post-item-thumbnail" src="'+r+'" width="'+d.thumbnailSize+'" height="'+d.thumbnailSize+'"><span class="related-post-item-tooltip">'+w+"</span></a>"+y+"</li>"}else{if(A==6){c+='<li><a class="related-post-item-title" title="'+t+'" href="'+v+'"'+b+" target='_blank'>"+w+'</a><div class="related-post-item-tooltip"><img alt="" class="related-post-item-thumbnail" src="'+r+'" width="'+d.thumbnailSize+'" height="'+d.thumbnailSize+'"><span class="related-post-item-summary"><span class="related-post-item-summary-text">'+u+"</span></span>"+y+"</div></li>"}else{c+='<li><a title="'+t+'" href="'+v+'"'+b+" target='_blank'>"+w+"</a></li>"}}}}}s.innerHTML=c+="</ul>"+y;d.callBack()};randomRelatedIndex=h;showRelatedPost=g;j(d.homePage.replace(/\/$/,"")+"/feeds/posts/summary"+e+"?alt=json-in-script&orderby=updated&max-results=0&callback=randomRelatedIndex")})(window,document,document.getElementsByTagName("head")[0]);
+</script>
+</body>
+</html>
